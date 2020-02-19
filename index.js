@@ -1,0 +1,25 @@
+const express = require("express")
+const welcome = require("./routers/welcome")
+const route = require("./routers/route")
+const commentsPost = require("./routers/commentsPost")
+const getPosts = require("./routers/getPosts")
+const getPostsID = require("./routers/getPostsID")
+const getCommentID = require("./routers/getCommentID")
+const deletePost = require("./routers/deletePost")
+const putPostID = require("./routers/putPostID")
+const server = express()
+const port = 4000
+
+server.use(express.json())
+server.use("/", welcome)
+server.use("/api/posts", route)
+server.use("/", commentsPost)
+server.use("/api/posts", getPosts)
+server.use("/", getPostsID)
+server.use("/", getCommentID)
+server.use("/", deletePost)
+server.use("/", putPostID)
+
+server.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`)
+})
